@@ -1,0 +1,3 @@
+[build]
+  publish = "public/"
+  command = "cp bin/aws-exports.js.template src/aws-exports.js && yarn build"

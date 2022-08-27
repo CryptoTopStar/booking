@@ -1,0 +1,19 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "sentry",
+      "version": 3
+    },
+    {
+      "type": "ProjectLayer",
+      "resourceName": "awsUtils",
+      "version": 1
+    },
+    {
+      "type": "ProjectLayer",
+      "resourceName": "googleCalender",
+      "version": 1
+    }
+  ]
+}

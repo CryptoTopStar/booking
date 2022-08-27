@@ -1,0 +1,35 @@
+{
+  "identityPoolName": "booking622cd5f6_identitypool_622cd5f6",
+  "allowUnauthenticatedIdentities": false,
+  "resourceNameTruncated": "bookin622cd5f6",
+  "userPoolName": "booking622cd5f6_userpool_622cd5f6",
+  "autoVerifiedAttributes": ["email"],
+  "mfaConfiguration": "OFF",
+  "mfaTypes": ["SMS Text Message"],
+  "smsAuthenticationMessage": "Your authentication code is {####}",
+  "smsVerificationMessage": "Your verification code is {####}",
+  "emailVerificationSubject": "パスワードリセットの依頼を受け付けました",
+  "emailVerificationMessage": "パスワードリセットのご依頼を受け付けました。\nあなたの認証コードは {####} です。\n\n認証コードを入力のうえ、パスワードリセットを行ってください。",
+  "defaultPasswordPolicy": false,
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [],
+  "requiredAttributes": ["email"],
+  "userpoolClientGenerateSecret": true,
+  "userpoolClientRefreshTokenValidity": 30,
+  "userpoolClientWriteAttributes": ["email"],
+  "userpoolClientReadAttributes": ["email"],
+  "userpoolClientLambdaRole": "bookin622cd5f6_userpoolclient_lambda_role",
+  "userpoolClientSetAttributes": false,
+  "sharedId": "622cd5f6",
+  "resourceName": "booking622cd5f6",
+  "authSelections": "identityPoolAndUserPool",
+  "authRoleArn": {
+    "Fn::GetAtt": ["AuthRole", "Arn"]
+  },
+  "unauthRoleArn": {
+    "Fn::GetAtt": ["UnauthRole", "Arn"]
+  },
+  "useDefault": "default",
+  "userPoolGroupList": [],
+  "dependsOn": []
+}

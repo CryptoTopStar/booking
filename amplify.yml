@@ -1,0 +1,47 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - "# Execute Amplify CLI with the helper script"
+        - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm use stable #安定版を利用
+        - curl -o- -L https://yarnpkg.com/install.sh | bash #安定版を再インストール
+        - yarn install
+    build:
+      commands:
+        - yarn run build
+  artifacts:
+    baseDirectory: public
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+test:
+  artifacts:
+    baseDirectory: cypress
+    configFilePath: "**/mochawesome.json"
+    files:
+      - "**/*.png"
+      - "**/*.mp4"
+  phases:
+    preTest:
+      commands:
+        - echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
+        - yarn add wait-on
+        - yarn add mocha@5.2.0 mochawesome mochawesome-merge mochawesome-report-generator
+        - yarn start & npx wait-on http://localhost:8000
+    test:
+      commands:
+        - 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
+        - yarn run build
+    postTest:
+      commands:
+        - ls -ltr cypress/report/mochawesome-report
+        - npx mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
+        - cat cypress/report/mochawesome.json

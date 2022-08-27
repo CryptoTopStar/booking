@@ -1,0 +1,24 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "sentry",
+      "version": 1
+    },
+    {
+      "type": "ProjectLayer",
+      "resourceName": "noticeEmail",
+      "version": 2
+    },
+    {
+      "type": "ProjectLayer",
+      "resourceName": "awsUtils",
+      "version": 1
+    },
+    {
+      "type": "ProjectLayer",
+      "resourceName": "systemMail",
+      "version": 5
+    }
+  ]
+}

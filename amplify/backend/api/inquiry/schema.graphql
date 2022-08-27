@@ -1,0 +1,7 @@
+type Inquiry @model {
+  id: ID!
+  name: String!
+  email: String!
+  title: String
+  text: String!
+}

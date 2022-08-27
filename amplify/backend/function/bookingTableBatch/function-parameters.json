@@ -1,0 +1,14 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "sentry",
+      "version": 1
+    },
+    {
+      "type": "ProjectLayer",
+      "resourceName": "awsUtils",
+      "version": 1
+    }
+  ]
+}

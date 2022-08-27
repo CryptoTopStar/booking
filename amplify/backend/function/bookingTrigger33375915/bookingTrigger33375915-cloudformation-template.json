@@ -1,0 +1,272 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "storagebookingName": {
+      "Type": "String",
+      "Default": "storagebookingName"
+    },
+    "storagebookingArn": {
+      "Type": "String",
+      "Default": "storagebookingArn"
+    },
+    "storagebookingStreamArn": {
+      "Type": "String",
+      "Default": "storagebookingArn"
+    },
+    "functionsentryArn": {
+      "Type": "String",
+      "Default": "functionsentryArn"
+    },
+    "functionawsUtilsArn": {
+      "Type": "String",
+      "Default": "functionawsUtilsArn"
+    },
+    "functioncalenderArn": {
+      "Type": "String",
+      "Default": "functioncalenderArn"
+    },
+    "functiongoogleCalenderArn": {
+      "Type": "String",
+      "Default": "functiongoogleCalenderArn"
+    },
+    "functionnoticeEmailArn": {
+      "Type": "String",
+      "Default": "functionnoticeEmailArn"
+    }
+  },
+  "Conditions": {
+    "ShouldNotCreateEnvResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "NONE"
+      ]
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Metadata": {
+        "aws:asset:path": "./src",
+        "aws:asset:property": "Code"
+      },
+      "Properties": {
+        "Handler": "index.handler",
+        "FunctionName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "bookingTrigger33375915",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "bookingTrigger33375915",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "ENV": {
+              "Ref": "env"
+            },
+            "SentryDSN": {
+              "Fn::Join": [
+                "",
+                [
+                  "{{resolve:ssm:/",
+                  {
+                    "Ref": "env"
+                  },
+                  "/sentry/dsn",
+                  ":1}}"
+                ]
+              ]
+            }
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+        },
+        "Runtime": "nodejs10.x",
+        "Timeout": "60",
+        "Code": {
+          "S3Bucket": "amplify-booking-dev-202236-deployment",
+          "S3Key": "amplify-builds/bookingTrigger33375915-44796f542f3131686677-build.zip"
+        },
+        "Layers": [
+          {
+            "Ref": "functionsentryArn"
+          },
+          {
+            "Ref": "functionawsUtilsArn"
+          },
+          {
+            "Ref": "functiongoogleCalenderArn"
+          }
+        ]
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "bookingLambdaRole33375915",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "bookingLambdaRole33375915",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": ["lambda.amazonaws.com"]
+              },
+              "Action": ["sts:AssumeRole"]
+            }
+          ]
+        },
+        "Path": "/",
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+          "arn:aws:iam::aws:policy/AmazonSNSFullAccess",
+          "arn:aws:iam::aws:policy/AmazonSSMFullAccess",
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+        ]
+      }
+    },
+    "lambdaexecutionpolicy": {
+      "DependsOn": ["LambdaExecutionRole"],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "lambda": {
+                      "Ref": "LambdaFunction"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "bookingTriggerPolicy": {
+      "DependsOn": ["LambdaExecutionRole"],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-trigger-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:ListStreams"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagebookingStreamArn"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "bookingTrigger": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "DependsOn": ["bookingTriggerPolicy"],
+      "Properties": {
+        "BatchSize": 100,
+        "Enabled": true,
+        "EventSourceArn": {
+          "Ref": "storagebookingStreamArn"
+        },
+        "FunctionName": {
+          "Fn::GetAtt": ["LambdaFunction", "Arn"]
+        },
+        "StartingPosition": "LATEST"
+      }
+    }
+  },
+  "Outputs": {
+    "Name": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    },
+    "Arn": {
+      "Value": {
+        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Value": {
+        "Ref": "LambdaExecutionRole"
+      }
+    }
+  }
+}

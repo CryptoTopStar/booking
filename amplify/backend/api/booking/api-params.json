@@ -1,0 +1,41 @@
+{
+    "paths": [
+        {
+            "name": "/booking",
+            "lambdaFunction": "booking",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "booking",
+    "apiName": "booking",
+    "functionArns": [
+        {
+            "lambdaFunction": "booking"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-booking-dev-202236-authRole",
+        "unAuthRoleName": "amplify-booking-dev-202236-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "booking",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,270 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Parameters": {
+    "CloudWatchRule": {
+      "Type": "String",
+      "Default": "NONE",
+      "Description": " Schedule Expression"
+    },
+    "env": {
+      "Type": "String"
+    },
+    "apiinquiryGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apiinquiryGraphQLAPIIdOutput"
+    },
+    "functionsentryArn": {
+      "Type": "String",
+      "Default": "functionsentryArn"
+    },
+    "functionawsUtilsArn": {
+      "Type": "String",
+      "Default": "functionawsUtilsArn"
+    },
+    "functionnoticeEmailArn": {
+      "Type": "String",
+      "Default": "functionnoticeEmailArn"
+    },
+    "functionsystemMailArn": {
+      "Type": "String",
+      "Default": "functionsystemMailArn"
+    }
+  },
+  "Conditions": {
+    "ShouldNotCreateEnvResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "NONE"
+      ]
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Metadata": {
+        "aws:asset:path": "./src",
+        "aws:asset:property": "Code"
+      },
+      "Properties": {
+        "Handler": "index.handler",
+        "FunctionName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "inquiryTrigger",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "inquiryTrigger",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "ENV": {
+              "Ref": "env"
+            },
+            "SentryDSN": {
+              "Fn::Join": [
+                "",
+                [
+                  "{{resolve:ssm:/",
+                  {
+                    "Ref": "env"
+                  },
+                  "/sentry/dsn",
+                  ":1}}"
+                ]
+              ]
+            }
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+        },
+        "Runtime": "nodejs12.x",
+        "Layers": [
+          {
+            "Ref": "functionsentryArn"
+          },
+          {
+            "Ref": "functionawsUtilsArn"
+          },
+          {
+            "Ref": "functionnoticeEmailArn"
+          },
+          {
+            "Ref": "functionsystemMailArn"
+          }
+        ],
+        "Timeout": "25",
+        "Code": {
+          "S3Bucket": "amplify-booking-dev-202236-deployment",
+          "S3Key": "amplify-builds/inquiryTrigger-72375a4474754f796c47-build.zip"
+        }
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "bookingLambdaRole868d85dc",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "bookingLambdaRole868d85dc",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": ["lambda.amazonaws.com"]
+              },
+              "Action": ["sts:AssumeRole"]
+            }
+          ]
+        },
+        "Path": "/",
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonSSMFullAccess",
+          "arn:aws:iam::aws:policy/AmazonSESFullAccess"
+        ]
+      }
+    },
+    "lambdaexecutionpolicy": {
+      "DependsOn": ["LambdaExecutionRole"],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "lambda": {
+                      "Ref": "LambdaFunction"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "inquiryTriggerPolicy": {
+      "DependsOn": ["LambdaExecutionRole"],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-trigger-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:ListStreams"
+              ],
+              "Resource": [
+                {
+                  "Fn::ImportValue": {
+                    "Fn::Sub": "${apiinquiryGraphQLAPIIdOutput}:GetAtt:InquiryTable:StreamArn"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "inquiryTrigger": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "DependsOn": ["inquiryTriggerPolicy"],
+      "Properties": {
+        "BatchSize": 100,
+        "Enabled": true,
+        "EventSourceArn": {
+          "Fn::ImportValue": {
+            "Fn::Sub": "${apiinquiryGraphQLAPIIdOutput}:GetAtt:InquiryTable:StreamArn"
+          }
+        },
+        "FunctionName": {
+          "Fn::GetAtt": ["LambdaFunction", "Arn"]
+        },
+        "StartingPosition": "LATEST"
+      }
+    }
+  },
+  "Outputs": {
+    "Name": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    },
+    "Arn": {
+      "Value": {
+        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Value": {
+        "Ref": "LambdaExecutionRole"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "baseUrl": "http://localhost:8000/",
+  "testFiles": "app/**/*.*",
+  "fixturesFolder": "cypress/fixtures",
+  "integrationFolder": "cypress/integration",
+  "pluginsFile": "cypress/plugins/index.js",
+  "screenshotsFolder": "cypress/screenshots",
+  "supportFile": "cypress/support/index.js",
+  "videosFolder": "cypress/videos",
+  "video": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["cypress.json"],
+      "url": "https://on.cypress.io/cypress.schema.json"
+    }
+  ]
+}
