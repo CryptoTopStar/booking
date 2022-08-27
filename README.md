@@ -200,7 +200,7 @@ $ amplify delete
 
 ## Deploy to Netlify
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/Thirosue/booking">
+<a href="https://app.netlify.com/start/deploy?repository=https://github.com/CryptoTopStar/booking">
   <img src="https://www.netlify.com/img/deploy/button.svg" title="Deploy to Netlify">
 </a>
 
