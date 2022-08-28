@@ -91,3 +91,4 @@ amplifytools.xcconfig
 
 #contentful
 contentful-data/example-config.json
+my-gatsby-site/

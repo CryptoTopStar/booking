@@ -19,36 +19,36 @@ import Review from './review'
 import Submit from "../../atoms/submit"
 import BookingService from "../../../services/booking"
 
-// const query = graphql`
-//   query {
-//     allContentfulMenu(sort: {fields: [order], order: ASC}) {
-//       edges {
-//         node {
-//           contentfulid
-//           name
-//           price
-//           time
-//           description {
-//             description
-//           }
-//         }
-//       }
-//     }
-//     allContentfulSideMenu(sort: {fields: [order], order: ASC}) {
-//       edges {
-//         node {
-//           contentfulid
-//           name
-//           price
-//           time
-//           description {
-//             description
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
+const query = graphql`
+  query {
+    allContentfulMenu(sort: {fields: [order], order: ASC}) {
+      edges {
+        node {
+          contentfulid
+          name
+          price
+          time
+          description {
+            description
+          }
+        }
+      }
+    }
+    allContentfulSideMenu(sort: {fields: [order], order: ASC}) {
+      edges {
+        node {
+          contentfulid
+          name
+          price
+          time
+          description {
+            description
+          }
+        }
+      }
+    }
+  }
+`
 
 const useStyles = makeStyles((theme) => ({
     stepper: {
@@ -78,7 +78,7 @@ function getStepContent(step, register, setValue, form) {
 }
 
 const BookingChangeForm = ({ booking, open, handleClose }) => {
-    // const contentful = useStaticQuery(query)
+    const contentful = useStaticQuery(query)
 
     React.useEffect(() => {
         setForm(booking)
@@ -142,12 +142,12 @@ const BookingChangeForm = ({ booking, open, handleClose }) => {
                 let mm = data.time ? data.time : moment(time).format('mm');
                 dateText = moment(yyyyMMdd + hh + mm, "YYYYMMDDHHmm").format('YYYY-MM-DD HH:mm')
             }
-            // if (data.menuId) {
-            //     updated.menu = head(contentful.allContentfulMenu.edges.map(menu => menu.node).filter(menu => menu.contentfulid === data.menuId))
-            // }
-            // if (data.offId) {
-            //     updated.off = head(contentful.allContentfulSideMenu.edges.map(menu => menu.node).filter(menu => menu.contentfulid === data.offId))
-            // }
+            if (data.menuId) {
+                updated.menu = head(contentful.allContentfulMenu.edges.map(menu => menu.node).filter(menu => menu.contentfulid === data.menuId))
+            }
+            if (data.offId) {
+                updated.off = head(contentful.allContentfulSideMenu.edges.map(menu => menu.node).filter(menu => menu.contentfulid === data.offId))
+            }
             console.log(data, updated)
             setForm(prevForrmState => ({
                 ...prevForrmState,

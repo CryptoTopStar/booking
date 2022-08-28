@@ -10,39 +10,39 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import Const from '../../../const'
 
-// const query = graphql`
-//   query {
-//     allContentfulMenu(sort: {fields: [order], order: ASC}) {
-//       edges {
-//         node {
-//           contentfulid
-//           name
-//           price
-//           time
-//           description {
-//             description
-//           }
-//         }
-//       }
-//     }
-//     allContentfulSideMenu(sort: {fields: [order], order: ASC}) {
-//       edges {
-//         node {
-//           contentfulid
-//           name
-//           price
-//           time
-//           description {
-//             description
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
+const query = graphql`
+  query {
+    allContentfulMenu(sort: {fields: [order], order: ASC}) {
+      edges {
+        node {
+          contentfulid
+          name
+          price
+          time
+          description {
+            description
+          }
+        }
+      }
+    }
+    allContentfulSideMenu(sort: {fields: [order], order: ASC}) {
+      edges {
+        node {
+          contentfulid
+          name
+          price
+          time
+          description {
+            description
+          }
+        }
+      }
+    }
+  }
+`
 
 const UpdateForm = ({ register, setValue, form }) => {
-    // const contentful = useStaticQuery(query)
+     const contentful = useStaticQuery(query)
 
     React.useEffect(() => {
         console.log(form)
@@ -119,7 +119,7 @@ const UpdateForm = ({ register, setValue, form }) => {
                 </Grid>
                 <Grid item xs={12} md={12}>
                     <FormControl fullWidth>
-                        {/* <InputLabel htmlFor="uncontrolled-native">Menu</InputLabel>
+                        <InputLabel htmlFor="uncontrolled-native">Menu</InputLabel>
                         {form.menu?.contentfulid && (
                             <NativeSelect
                                 defaultValue={form.menu?.contentfulid}
@@ -130,12 +130,12 @@ const UpdateForm = ({ register, setValue, form }) => {
                                     <option key={menu.contentfulid} value={menu.contentfulid}>{menu.name}</option>
                                 ))}
                             </NativeSelect>
-                        )} */}
+                        )}
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={12}>
                     <FormControl fullWidth>
-                        {/* <InputLabel htmlFor="uncontrolled-native">Off</InputLabel>
+                        <InputLabel htmlFor="uncontrolled-native">Off</InputLabel>
                         {form.off?.contentfulid && (
                             <NativeSelect
                                 defaultValue={form.off?.contentfulid}
@@ -146,7 +146,7 @@ const UpdateForm = ({ register, setValue, form }) => {
                                     <option key={menu.contentfulid} value={menu.contentfulid}>{menu.name}</option>
                                 ))}
                             </NativeSelect>
-                        )} */}
+                        )}
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={12}>

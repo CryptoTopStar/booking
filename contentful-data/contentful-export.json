@@ -1,16 +1,803 @@
 {
   "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "y75up9ggcnld"
+          }
+        },
+        "id": "menu",
+        "type": "ContentType",
+        "createdAt": "2022-08-27T15:55:04.626Z",
+        "updatedAt": "2022-08-27T16:30:21.988Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 9,
+        "publishedAt": "2022-08-27T16:30:21.988Z",
+        "firstPublishedAt": "2022-08-27T15:55:05.394Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "publishedCounter": 5,
+        "version": 10,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        }
+      },
+      "displayField": "name",
+      "name": "Menu",
+      "description": "",
+      "fields": [
+        {
+          "id": "id",
+          "name": "id",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "name",
+          "name": "name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "time",
+          "name": "time",
+          "type": "Date",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "price",
+          "name": "price",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "description",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "order",
+          "name": "order",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "y75up9ggcnld"
+          }
+        },
+        "id": "sideMenu",
+        "type": "ContentType",
+        "createdAt": "2022-08-27T15:57:01.994Z",
+        "updatedAt": "2022-08-27T16:30:23.183Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 9,
+        "publishedAt": "2022-08-27T16:30:23.183Z",
+        "firstPublishedAt": "2022-08-27T15:57:02.746Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "publishedCounter": 5,
+        "version": 10,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        }
+      },
+      "displayField": "name",
+      "name": "SideMenu",
+      "description": "",
+      "fields": [
+        {
+          "id": "id",
+          "name": "id",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "name",
+          "name": "name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "time",
+          "name": "time",
+          "type": "Date",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "price",
+          "name": "price",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "description",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "order",
+          "name": "order",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    }
   ],
   "tags": [
   ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "y75up9ggcnld",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 10,
+        "createdAt": "2022-08-27T15:55:05.488Z",
+        "createdBy": {
+          "sys": {
+            "id": "5b0im3RnUaZJjqzmXLwW5v",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2022-08-27T16:30:25.151Z",
+        "updatedBy": {
+          "sys": {
+            "id": "5b0im3RnUaZJjqzmXLwW5v",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "menu",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "id",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "time",
+          "widgetId": "datePicker",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "price",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "description",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "order",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "y75up9ggcnld",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 10,
+        "createdAt": "2022-08-27T15:57:02.798Z",
+        "createdBy": {
+          "sys": {
+            "id": "5b0im3RnUaZJjqzmXLwW5v",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2022-08-27T16:30:26.003Z",
+        "updatedBy": {
+          "sys": {
+            "id": "5b0im3RnUaZJjqzmXLwW5v",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "sideMenu",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "id",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "time",
+          "widgetId": "datePicker",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "price",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "description",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "order",
+          "widgetId": "numberEditor",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    }
+  ],
   "entries": [
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "y75up9ggcnld"
+          }
+        },
+        "id": "670KM0ziPXxBsmYYUo90J7",
+        "type": "Entry",
+        "createdAt": "2022-08-27T16:08:23.406Z",
+        "updatedAt": "2022-08-27T16:30:27.882Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 9,
+        "publishedAt": "2022-08-27T16:30:27.882Z",
+        "firstPublishedAt": "2022-08-27T16:08:41.357Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "publishedCounter": 4,
+        "version": 10,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "menu"
+          }
+        }
+      },
+      "fields": {
+        "id": {
+          "ja-JP": 1
+        },
+        "name": {
+          "ja-JP": "king"
+        },
+        "time": {
+          "ja-JP": "2022-08-03T00:00+09:00"
+        },
+        "price": {
+          "ja-JP": 59
+        },
+        "description": {
+          "ja-JP": "sdf"
+        },
+        "order": {
+          "ja-JP": 1
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "y75up9ggcnld"
+          }
+        },
+        "id": "7yDt5ziX4fGSUuIBjLHFbZ",
+        "type": "Entry",
+        "createdAt": "2022-08-27T16:19:33.672Z",
+        "updatedAt": "2022-08-27T16:30:28.842Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 7,
+        "publishedAt": "2022-08-27T16:30:28.842Z",
+        "firstPublishedAt": "2022-08-27T16:19:50.629Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 8,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "sideMenu"
+          }
+        }
+      },
+      "fields": {
+        "id": {
+          "ja-JP": 1
+        },
+        "name": {
+          "ja-JP": "jo"
+        },
+        "time": {
+          "ja-JP": "2022-08-03T00:00+09:00"
+        },
+        "price": {
+          "ja-JP": 123
+        },
+        "description": {
+          "ja-JP": "ok"
+        },
+        "order": {
+          "ja-JP": 2
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "y75up9ggcnld"
+          }
+        },
+        "id": "3SMoLb6oah4Mh9UO5W76My",
+        "type": "Entry",
+        "createdAt": "2022-08-27T16:28:46.666Z",
+        "updatedAt": "2022-08-27T16:30:29.770Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 6,
+        "publishedAt": "2022-08-27T16:30:29.770Z",
+        "firstPublishedAt": "2022-08-27T16:29:06.206Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 7,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "menu"
+          }
+        }
+      },
+      "fields": {
+        "id": {
+          "ja-JP": 2
+        },
+        "name": {
+          "ja-JP": "kill"
+        },
+        "time": {
+          "ja-JP": "2022-08-17T00:00+09:00"
+        },
+        "price": {
+          "ja-JP": 60
+        },
+        "description": {
+          "ja-JP": "ok"
+        },
+        "order": {
+          "ja-JP": 6
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "y75up9ggcnld"
+          }
+        },
+        "id": "Fz3QjMiCV9BigvJwUfrYd",
+        "type": "Entry",
+        "createdAt": "2022-08-27T16:29:16.222Z",
+        "updatedAt": "2022-08-27T16:30:30.704Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2022-08-27T16:30:30.704Z",
+        "firstPublishedAt": "2022-08-27T16:29:28.279Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "sideMenu"
+          }
+        }
+      },
+      "fields": {
+        "id": {
+          "ja-JP": 4
+        },
+        "name": {
+          "ja-JP": "sd"
+        },
+        "time": {
+          "ja-JP": "2022-08-02T00:00+09:00"
+        },
+        "price": {
+          "ja-JP": 60
+        },
+        "description": {
+          "ja-JP": "ss"
+        },
+        "order": {
+          "ja-JP": 123
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "y75up9ggcnld"
+          }
+        },
+        "id": "1H3aGbkvXn1Lp5gsCNqcr8",
+        "type": "Entry",
+        "createdAt": "2022-08-27T19:01:16.843Z",
+        "updatedAt": "2022-08-27T19:01:37.440Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2022-08-27T19:01:37.440Z",
+        "firstPublishedAt": "2022-08-27T19:01:37.440Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5b0im3RnUaZJjqzmXLwW5v"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "menu"
+          }
+        }
+      },
+      "fields": {
+        "id": {
+          "ja-JP": 5
+        },
+        "name": {
+          "ja-JP": "killer"
+        },
+        "time": {
+          "ja-JP": "2022-08-31T00:00+09:00"
+        },
+        "price": {
+          "ja-JP": 66
+        },
+        "description": {
+          "ja-JP": "sdf"
+        },
+        "order": {
+          "ja-JP": 123
+        }
+      }
+    }
   ],
   "assets": [
   ],
   "locales": [
     {
-      "name": "English (United States)",
-      "code": "en-US",
+      "name": "Japanese (Japan)",
+      "code": "ja-JP",
       "fallbackCode": null,
       "default": true,
       "contentManagementApi": true,
@@ -19,7 +806,7 @@
       "sys": {
         "type": "Locale",
         "id": "5vKHfK5MLwyUn6W9IbI0fK",
-        "version": 1,
+        "version": 2,
         "space": {
           "sys": {
             "type": "Link",
@@ -50,7 +837,7 @@
             "id": "5b0im3RnUaZJjqzmXLwW5v"
           }
         },
-        "updatedAt": "2022-08-26T15:43:08Z"
+        "updatedAt": "2022-08-27T15:16:34Z"
       }
     }
   ],

@@ -83,7 +83,7 @@ function getStepContent(handleNext, step, register, errors, form) {
 async function confirmMenu(data, _, confirm) {
     let stopFlg = false
     const ids = [data.menu?.contentfulid, data.off?.contentfulid]
-    if (ids.filter(id => id && id.indexOf('hand') !== -1).length && ids.filter(id => id && id.indexOf('foot') !== -1).length) {
+    if (ids.filter(id => id).length && ids.filter(id => id).length) {
         await confirm({ html: true, description: (<><strong>ハンドメニュー</strong>と<strong>フットメニュー</strong>を選択しています。<br />間違いないですか？</>) })
             .catch(() => stopFlg = true);
     }

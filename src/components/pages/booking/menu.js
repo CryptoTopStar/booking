@@ -19,39 +19,39 @@ const useStyles = makeStyles({
     },
 });
 
-// const query = graphql`
-//   query {
-//     allContentfulMenu(sort: {fields: [order], order: ASC}) {
-//       edges {
-//         node {
-//           contentfulid
-//           name
-//           price
-//           time
-//           description {
-//             description
-//           }
-//         }
-//       }
-//     }
-//     allContentfulSideMenu(sort: {fields: [order], order: ASC}) {
-//       edges {
-//         node {
-//           contentfulid
-//           name
-//           price
-//           time
-//           description {
-//             description
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
+const query = graphql`
+  query {
+    allContentfulMenu(sort: {fields: [order], order: ASC}) {
+      edges {
+        node {
+          contentfulid
+          name
+          price
+          time
+          description {
+            description
+          }
+        }
+      }
+    }
+    allContentfulSideMenu(sort: {fields: [order], order: ASC}) {
+      edges {
+        node {
+          contentfulid
+          name
+          price
+          time
+          description {
+            description
+          }
+        }
+      }
+    }
+  }
+`
 
 const MenuForm = ({ handleNext }) => {
-    // const contentful = useStaticQuery(query)
+     const contentful = useStaticQuery(query)
     const classes = useStyles();
 
     const [menu, setMenu] = React.useState({});
@@ -59,12 +59,11 @@ const MenuForm = ({ handleNext }) => {
 
     const next = menu => {
         document.getElementById("dialog-root-position").scrollIntoView(true);
-        if (menu.contentfulid.indexOf('off') !== -1) {
-            handleNext({
-                menu: { time: 0 },
-                off: menu
-            })
-        }
+        console.log(menu);
+        handleNext({
+            menu: { time: 0 },
+            off: menu
+        })
         setToggle(true)
         setMenu({
             menu
@@ -87,7 +86,7 @@ const MenuForm = ({ handleNext }) => {
     return (<>
         {!toggle && (
             <Grid container spacing={3}>
-                {/* {contentful.allContentfulMenu.edges.map(menu => menu.node).map((menu) =>
+                {contentful.allContentfulMenu.edges.map(menu => menu.node).map((menu) =>
                 (<Grid key={menu.contentfulid} item xs={12} sm={6} md={6}>
                     <Card onClick={() => next(menu)} className={classes.root} >
                         <CardContent>
@@ -104,13 +103,13 @@ const MenuForm = ({ handleNext }) => {
                         </CardContent>
                     </Card>
                 </Grid>)
-                )} */}
+                )}
             </Grid>
         )}
         {toggle && (
             <>
                 <Grid container spacing={3}>
-                    {/* {contentful.allContentfulSideMenu.edges.map(menu => menu.node).map((menu) =>
+                    {contentful.allContentfulSideMenu.edges.map(menu => menu.node).map((menu) =>
                     (<Grid key={menu.contentfulid} item xs={12} md={6}>
                         <Card onClick={() => submit(menu)} className={classes.root} >
                             <CardContent>
@@ -124,7 +123,7 @@ const MenuForm = ({ handleNext }) => {
                         </Card>
                         <Box mb="1rem" />
                     </Grid>)
-                    )} */}
+                    )}
                 </Grid>
                 <Button onClick={back} className={classes.button}>
                     メニューへ
