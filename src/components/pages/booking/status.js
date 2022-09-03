@@ -70,7 +70,7 @@ function createData(at, today, tomorrow, daysAfter2, daysAfter3, daysAfter4, day
     return { at, today, tomorrow, daysAfter2, daysAfter3, daysAfter4, daysAfter5, daysAfter6 };
 }
 
-const start = new Date()
+const start = new Date('2021-04-01')
 
 const StatusForm = ({ handleNext, form }) => {
     const confirm = useConfirm();
@@ -113,7 +113,7 @@ const StatusForm = ({ handleNext, form }) => {
         const data =
             reservationTable.map(row => createData(row.time, row[startAt], row[startAt + 1], row[startAt + 2], row[startAt + 3], row[startAt + 4], row[startAt + 5], row[startAt + 6]))
         setRows(data)
-
+        console.log(startAt);
     }, [reservationTable, device, page]);
 
     /**
@@ -151,7 +151,24 @@ const StatusForm = ({ handleNext, form }) => {
         console.log(date, at)
         handleNext({ date, at })
     };
-
+    //my changed code
+    const timeChange = (item) => {
+        let hour = item.slice(0,2);
+       let minute = item.slice(2,4);
+       let endhour;
+       let endminute;
+       if(minute == '30') {
+            endhour = parseInt(hour) + 1;
+           endminute = '00';
+       }
+       else
+       {
+        endhour = hour;
+        endminute = '30';
+       }
+       const result = (hour+':'+minute+ ' - '+ endhour+':'+endminute);
+       return result;
+    }
     return (
         <>
             <Paper elevation={3} className={classes.root}>
@@ -172,11 +189,13 @@ const StatusForm = ({ handleNext, form }) => {
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
+                                
                                 <StyledTableRow key={row.at}>
                                     <TableCell component="th" scope="row">
-                                        {row.at}
+                                        {timeChange(row.at)}
                                     </TableCell>
                                     <TableCell align="center">
+                                    <Link color="inherit" onClick={() => handleClickOpenBooking(0, row.at)}>{row.today}</Link>
                                         {!!row.today && (
                                             <Link color="inherit" onClick={() => handleClickOpenBooking(0, row.at)}>{row.today}</Link>
                                         )}
@@ -220,7 +239,7 @@ const StatusForm = ({ handleNext, form }) => {
                                 </StyledTableRow>
                             ))}
                         </TableBody>
-                    </Table>
+                    </Table>  
                 </TableContainer>
             </Paper>
             <Paper elevation={1} className={classes.root}>

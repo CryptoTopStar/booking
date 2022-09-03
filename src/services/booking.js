@@ -13,6 +13,7 @@ const myInit = {
  */
 async function list(sub) {
     const response = await API.get(apiName, `${path}/sub/${sub}`)
+    console.log(response);
     return response
 }
 
@@ -30,17 +31,17 @@ async function get(sub, time) {
  */
 async function create(body) {
     let result = {}
-    await API.post(apiName, path, { ...myInit, body })
-        .then(_ => { /* nop */ })
-        .catch(error => {
-            const { status } = error.response
-            console.log('error', status, error.response)
-            if (status === 409) {
-                result = { ...result, status: 409 }
-            } else {
-                throw new Error(error)
-            }
-        });
+    // await API.post(apiName, path, { ...myInit, body })
+    //     .then(_ => { /* nop */ })
+    //     .catch(error => {
+    //         const { status } = error.response
+    //         console.log('error', status, error.response)
+    //         if (status === 409) {
+    //             result = { ...result, status: 409 }
+    //         } else {
+    //             throw new Error(error)
+    //         }
+    //     });
     return result
 }
 

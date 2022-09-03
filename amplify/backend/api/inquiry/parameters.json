@@ -1,7 +1,0 @@
-{
-  "AppSyncApiName": "inquiry",
-  "DynamoDBBillingMode": "PROVISIONED",
-  "DynamoDBEnableServerSideEncryption": false,
-  "DynamoDBModelTableReadIOPS": 1,
-  "DynamoDBModelTableWriteIOPS": 1
-}

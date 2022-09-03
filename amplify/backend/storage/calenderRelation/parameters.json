@@ -1,5 +1,0 @@
-{
-    "tableName": "calenderRelation",
-    "partitionKeyName": "bookingId",
-    "partitionKeyType": "S"
-}

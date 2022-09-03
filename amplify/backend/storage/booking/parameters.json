@@ -1,7 +1,0 @@
-{
-    "tableName": "booking",
-    "partitionKeyName": "day",
-    "partitionKeyType": "S",
-    "sortKeyName": "time",
-    "sortKeyType": "N"
-}

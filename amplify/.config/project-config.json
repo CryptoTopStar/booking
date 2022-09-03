@@ -1,15 +1,17 @@
 {
-  "projectName": "booking",
-  "version": "3.0",
+  "projectName": "test",
+  "version": "3.1",
   "frontend": "javascript",
   "javascript": {
     "framework": "react",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "public",
-      "BuildCommand": "",
-      "StartCommand": "npm run-script start"
+      "DistributionDir": "build",
+      "BuildCommand": "npm.cmd run-script build",
+      "StartCommand": "npm.cmd run-script start"
     }
   },
-  "providers": ["awscloudformation"]
+  "providers": [
+    "awscloudformation"
+  ]
 }

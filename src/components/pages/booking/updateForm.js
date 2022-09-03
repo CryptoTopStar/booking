@@ -58,7 +58,7 @@ const UpdateForm = ({ register, setValue, form }) => {
     }, [register])
 
     // for date time
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2021-04-01'));
     const handleDateChange = date => {
         setSelectedDate(date)
         setValue("day", date)

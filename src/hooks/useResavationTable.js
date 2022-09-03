@@ -5,7 +5,7 @@ import Const from '../const'
 import ReservationTableService from '../services/reservationTable';
 
 // ReservationTable の state と更新ロジックを持つフック
-const useResavationTable = ({ start = new Date(), frame }) => {
+const useResavationTable = ({ start = new Date('2021-04-01'), frame }) => {
     const [reservationTable, setReservationTable] = useState([]);
 
     // このカスタムフックを利用しているコンポーネントがマウントされたら ReservationTable を取得する。
