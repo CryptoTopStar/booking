@@ -19,7 +19,7 @@ const useResavationTable = ({ start = new Date('2021-04-01'), frame }) => {
 
         const fetchAll = async () => {
             const response = await ReservationTableService.getAll()
-
+            console.log(response);
             const calcTable =
                 response
                     .map(row => {
