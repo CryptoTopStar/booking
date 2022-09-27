@@ -20,6 +20,7 @@ const About = ({ data }) => {
   const inquiry = useInquiry()
 
   const handleClick = () => {
+    console.log('ok');
     inquiry.handleOpen()
   };
 
