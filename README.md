@@ -10,9 +10,6 @@ Static sites are scalable, secure and have very little required maintenance. The
 
 With Contentful and Gatsby you can connect your favorite static site generator with an API that provides an easy to use interface for people writing content and automate the publishing using services like [Travis CI](https://travis-ci.org/) or [Netlify](https://www.netlify.com/) or [AWS Amplify](https://aws.amazon.com/amplify/) .
 
-## Demo Page
-
-* [https://festive-swartz-405bdc.netlify.app](https://festive-swartz-405bdc.netlify.app)
 
 * demo user
 
@@ -92,19 +89,18 @@ With Contentful and Gatsby you can connect your favorite static site generator w
 
 #### Contentful Account Create & Create Personal Access Tokens
 
-See [export / import with Contentful](https://qiita.com/takeshi_hirosue/items/f4539a87a9e2aab382ac#1-%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E4%BD%9C%E6%88%90-personal-access-tokens).
 
 #### Locale Settings
 
 Change the default locale to Japanese
 
-See [Change the default locale to Japanese](https://qiita.com/takeshi_hirosue/items/a30bbd0053cc8fdf5272).
+See [Change the default locale to Japanese].
 
-See [Localization with Contentful](https://www.contentful.com/developers/docs/tutorials/general/setting-locales/).
+See [Localization with Contentful].
 
 #### Create configuration file
 
-See [export / import with Contentful](https://qiita.com/takeshi_hirosue/items/f4539a87a9e2aab382ac#2%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%BD%9C%E6%88%90).
+See [export / import with Contentful]
 
 #### Contentful import
 
@@ -113,10 +109,9 @@ $ cd contentful-data
 $ npx contentful-cli login --management-token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 $ npx contentful-cli space import --config example-config.json
 ```
+See [export / import with Contentful]
 
-See [export / import with Contentful](https://qiita.com/takeshi_hirosue/items/f4539a87a9e2aab382ac).
-
-See [Importing and exporting content with the Contentful CLI](https://www.contentful.com/developers/docs/tutorials/cli/import-and-export/).
+See [Importing and exporting content with the Contentful CLI]
 
 ### FrontEnd Settings
 
@@ -161,7 +156,6 @@ Run the project locally with live reload in development mode.
 
 Amplify init settings.
 
-See [AWS Amplify CLIの使い方〜インストールから初期セットアップまで〜](https://qiita.com/Junpei_Takagi/items/f2bc567761880471fd54).
 
 #### create required parameter
 
@@ -208,6 +202,3 @@ $ amplify delete
 
 * Gatsby
 
-### Webサイト高速化のための　静的サイトジェネレーター活用入門
-
-https://github.com/ebisucom/gatsbyjs-book
